@@ -78,6 +78,7 @@ vault auth enable approle
 This command tells Vault to enable the AppRole authentication method.
 
 2. **Create an AppRole**:
+   **Path denotes on this location below permission is given like on path - "secrets/data/" we can do action like create a secret, read the secret and all.
 
 We need to create policy first,
 
