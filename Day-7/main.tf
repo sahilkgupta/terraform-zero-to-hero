@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 provider "vault" {
-  address = "<>:8200"
+  address = "http://<public-ip>:8200"
   skip_child_token = true
 
   auth_login {
@@ -17,8 +17,8 @@ provider "vault" {
 }
 
 data "vault_kv_secret_v2" "example" {
-  mount = "secret" // change it according to your mount
-  name  = "test-secret" // change it according to your secret
+  mount = "kv" // change it according to your mount
+  name  = "testsecret" // change it according to your secret
 }
 
 resource "aws_instance" "my_instance" {
@@ -27,6 +27,6 @@ resource "aws_instance" "my_instance" {
 
   tags = {
     Name = "test"
-    Secret = data.vault_kv_secret_v2.example.data["foo"]
+    Secret = data.vault_kv_secret_v2.example.data["username"]
   }
 }
